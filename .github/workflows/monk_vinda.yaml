@@ -7,7 +7,7 @@ name: 京东维达品牌日
 on:
     workflow_dispatch:
     schedule:
-        - cron: "0 0,1-22/2 1-31 4-7 *"
+        - cron: "15 08 5-30 4 *"
     watch:
         types: [started]
     repository_dispatch:
@@ -49,4 +49,4 @@ jobs:
                   PUSH_PLUS_TOKEN: ${{ github.event.client_payload.PUSH_PLUS_TOKEN || secrets.PUSH_PLUS_TOKEN }}
                   PUSH_PLUS_USER: ${{ github.event.client_payload.PUSH_PLUS_USER || secrets.PUSH_PLUS_USER }}
                   JDCFD_SHARECODES: ${{ github.event.client_payload.JDCFD_SHARECODES || secrets.JDCFD_SHARECODES }}
-                  SYNCURL:https://github.com/mhx99/mm/blob/main/monk_vinda.js
+                  SYNCURL: https://github.com/mhx99/mm/blob/main/monk_vinda.js
