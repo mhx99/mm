@@ -1,21 +1,21 @@
 /*
 京喜签到
 已支持IOS双京东账号,Node.js支持N个京东账号
-脚本兼容:QuantumultX,Surge,Loon,JSBox,Node.js
+脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
 ============Quantumultx===============
 [task_local]
 #京喜签到
-5 0 * * * https://raw.githubusercontent.com/wuzhi01/MyActions/main/scripts/jx_sign.js, tag=京喜签到, enabled=true
+5 0 * * * https://jdsharedresourcescdn.azureedge.net/jdresource/jx_sign.js, tag=京喜签到, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
 
 ================Loon==============
 [Script]
-cron "5 0 * * *" script-path=https://raw.githubusercontent.com/wuzhi01/MyActions/main/scripts/jx_sign.js,tag=京喜签到
+cron "5 0 * * *" script-path=https://jdsharedresourcescdn.azureedge.net/jdresource/jx_sign.js,tag=京喜签到
 
 ===============Surge=================
-京喜签到 = type=cron,cronexp="5 0 * * *",wake-system=1,timeout=20,script-path=https://raw.githubusercontent.com/wuzhi01/MyActions/main/scripts/jx_sign.js
+京喜签到 = type=cron,cronexp="5 0 * * *",wake-system=1,timeout=3600,script-path=https://jdsharedresourcescdn.azureedge.net/jdresource/jx_sign.js
 
 ============小火箭=========
-京喜签到 = type=cron,script-path=https://raw.githubusercontent.com/wuzhi01/MyActions/main/scripts/jx_sign.js, cronexpr="5 0 * * *", timeout=200, enable=true
+京喜签到 = type=cron,script-path=https://jdsharedresourcescdn.azureedge.net/jdresource/jx_sign.js, cronexpr="5 0 * * *", timeout=3600, enable=true
  */
 const $ = new Env('京喜签到');
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -31,13 +31,7 @@ if ($.isNode()) {
   })
   if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {};
 } else {
-  let cookiesData = $.getdata('CookiesJD') || "[]";
-  cookiesData = jsonParse(cookiesData);
-  cookiesArr = cookiesData.map(item => item.cookie);
-  cookiesArr.reverse();
-  cookiesArr.push(...[$.getdata('CookieJD2'), $.getdata('CookieJD')]);
-  cookiesArr.reverse();
-  cookiesArr = cookiesArr.filter(item => item !== "" && item !== null && item !== undefined);
+  cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
 const JD_API_HOST = 'https://m.jingxi.com/';
 !(async () => {
@@ -279,7 +273,7 @@ function TotalBean() {
               return
             }
             if (data['retcode'] === 0) {
-              $.nickName = data['base'].nickname;
+              $.nickName = (data['base'] && data['base'].nickname) || $.UserName;
             } else {
               $.nickName = $.UserName
             }
