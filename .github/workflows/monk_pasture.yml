@@ -6,7 +6,7 @@ name: 「活动」有机牧场
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: ''0 0,1-22/2 1-31 4-7 *'
   repository_dispatch:
     types: monk_pasture.js
 jobs:
