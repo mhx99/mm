@@ -1,13 +1,13 @@
-﻿name: monk_vinda-维达
+﻿name: 创维408下班全勤奖
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '15 0 5-30 4 *'
+    - cron: '1 0 * 4 *'
   watch:
     types: started
   repository_dispatch:
-    types: monk_vinda
+    types: monk_skyworth
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -31,9 +31,9 @@ jobs:
       - name: npm install
         run: |
           npm install
-      - name: '运行 【“韧”性探索 空降好礼】'
+      - name: '运行 【创维408下班全勤奖】'
         run: 
-          node monk_vinda.js
+          node monk_skyworth.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN }}
@@ -50,4 +50,3 @@ jobs:
           DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
           DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
           JD_USER_AGENT: ${{ secrets.JD_USER_AGENT }}
-          MONK_VINDA_ADD2CAR: true
