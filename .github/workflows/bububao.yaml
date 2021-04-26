@@ -1,12 +1,10 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: 笑谱
+name: 步步宝
 
 on:
   workflow_dispatch:
   schedule:
-     - cron: '*/15 0-15 * * *'
+     - cron: '0,30 0-23 * * *'
   watch:
     types: started
 jobs:
@@ -14,10 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     env:
+        bububaotokenVal: ${{ secrets. BBB_bububaoTOKEN }}
+        CASH: ${{ secrets. BBB_CASH }}		
         
-        XP_refreshTOKEN: ${{ secrets.XP_refreshTOKEN }}
-        XP_CASH: ${{ secrets.XP_CASH }}
-        XP_live: ${{ secrets.XP_live }}
     steps:
       - name: Checkout
         run: |
@@ -27,15 +24,15 @@ jobs:
         with:
           node-version: 12.x
       - name: npm install
-        if: env.XP_refreshTOKEN
+        if: env.BBB_bububaoTOKEN
         run: |
           cd ~/mm
           npm install
-      - name: '运行 【笑谱】'
-        if: env.XP_refreshTOKEN
+      - name: '运行 【步步宝】'
+        if: env.BBB_bububaoTOKEN
         run: |
           cd ~/mm
-          node iboxpay.js
+          node bububao.js
         env:
           
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
@@ -45,5 +42,3 @@ jobs:
           BARK_SOUND: ${{ secrets.BARK_SOUND }}
           DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
           DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
-
-    
