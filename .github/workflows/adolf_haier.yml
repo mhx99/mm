@@ -6,7 +6,7 @@ name: 「活动」欢乐大逃亡
 on:
   workflow_dispatch:
   schedule:
-    - cron: '15 17,5 * 5 *'
+    - cron: '15 8 7-31 5 *'
   repository_dispatch:
     types: adolf_haier
 jobs:
