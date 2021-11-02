@@ -1,6 +1,3 @@
-/*
-https://jinggengjcq-isv.isvjcloud.com/fronth5/#/pages/unitedCardNew2021110105/unitedCardNew2021110105?actId=65fcf625b7c7_11015
-*/
 const $ = new Env("大牌联合");
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -56,7 +53,7 @@ if ($.isNode()) {
             $.UUID = getUUID('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
             $.appkey = "51B59BB805903DA4CE513D29EC448375"
             $.userId = "10299171"
-            $.actId = "65fcf625b7c7_11015"
+            $.actId = "2c5156ff82714_11013"
             $.authorCode = ownCode ? ownCode : authorCodeList[random(0, authorCodeList.length)]
             console.log('去助力 -> '+$.authorCode);
             await openCardNew();
