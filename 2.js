@@ -38,7 +38,7 @@ $.outFlag = 0
     return;
   }
   MD5()
-  console.log(`入口:\nhttps://prodev.m.jd.com/mall/active/3MvqPbD5B9qDAghsigf2gYkTiDQD/index.html`)
+  console.log(`入口:\nhttps://prodev.m.jd.com/mall/active/2VyRHGE7jM1igBJcrjoB6ak1JJWV/index.html`)
   for (let i = 0; i < cookiesArr.length; i++) {
     cookie = cookiesArr[i];
     if (cookie) {
@@ -110,9 +110,9 @@ async function run() {
 
 function indexInfo() {
   return new Promise(async resolve => {
-    let sign = getSign("/tzh/combination/indexInfo",{"activityId": 12})
+    let sign = getSign("/tzh/combination/indexInfo",{"activityId": 14})
     $.get({
-      url: `https://combination.m.jd.com/tzh/combination/indexInfo?activityId=12&t=${sign.timestamp}`,
+      url: `https://combination.m.jd.com/tzh/combination/indexInfo?activityId=14&t=${sign.timestamp}`,
       headers: {
         'Accept': 'application/json, text/plain, */*',
         'Content-Type':'application/json;charset=utf-8',
@@ -158,10 +158,10 @@ function indexInfo() {
 function doTask(type, id, taskId) {
   if($.outFlag != 0) return
   return new Promise(async resolve => {
-    let sign = getSign(`/tzh/combination/${type}`,{"activityId": 12,"id":id,"taskId":taskId})
+    let sign = getSign(`/tzh/combination/${type}`,{"activityId": 14,"id":id,"taskId":taskId})
     $.post({
       url: `https://combination.m.jd.com/tzh/combination/${type}`,
-      body: `activityId=12&id=${id}&taskId=${taskId}&t=${sign.timestamp}`,
+      body: `activityId=14&id=${id}&taskId=${taskId}&t=${sign.timestamp}`,
       headers: {
         'Accept': 'application/json, text/plain, */*',
         "Accept-Language": "zh-cn",
@@ -215,10 +215,10 @@ function doTask(type, id, taskId) {
 function extraTaskPrize() {
   if($.outFlag != 0) return
   return new Promise(async resolve => {
-    let sign = getSign(`/tzh/combination/extraTaskPrize`,{"activityId": 12})
+    let sign = getSign(`/tzh/combination/extraTaskPrize`,{"activityId": 14})
     $.post({
       url: `https://combination.m.jd.com/tzh/combination/extraTaskPrize`,
-      body: `activityId=12&t=${sign.timestamp}`,
+      body: `activityId=14&t=${sign.timestamp}`,
       headers: {
         'Accept': 'application/json, text/plain, */*',
         "Accept-Language": "zh-cn",
